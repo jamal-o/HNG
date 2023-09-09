@@ -1,16 +1,22 @@
-# stage_one
+# Public Repository for my HNG Internship
 
-A new Flutter project.
+### Prerequisites
+Android Studio 4.1 or later (for Android development)
+Xcode 12 or later (for iOS development)
+Flutter SDK
+A code editor, such as Android Studio, Visual Studio Code, or Emacs.
+For testing:
+- A physical Android or iOS device connected to your computer and set to Developer mode.
+- The iOS simulator (requires installing Xcode tools).
+- The Android Emulator (requires setup in Android Studio).
+- Chrome Web browser (requires setup for web)
 
-## Getting Started
+### Setup Instructions
+1. Clone the repository to your local device.
+2. Build and run the app from the main.dart file in the lib folder.
+3. Enjoy!!!
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
