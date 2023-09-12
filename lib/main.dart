@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: SlackName,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             GitHubButton(context),
