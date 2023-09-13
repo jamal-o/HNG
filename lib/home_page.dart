@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:stage_one/edit_page.dart';
+import 'package:stage_one/slack_detail.dart';
 import 'package:stage_one/web-view.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({required pageTitle, super.key});
+  HomePage({this.slackDetails = defaultSlackDetails, super.key});
 
   //TODO: Make it update with changes
-  SlackDetail slackDetail = SlackDetail(
-    fullName: "Olasupo Jamaldeen Abimbola",
-    userName: "Jamal",
-    gitHubHandle: "@Jamal",
-  );
+
+  late final SlackDetails slackDetails;
 
   // Scaffold scaffold = Scaffold(
   //   appBar: appBar,
@@ -47,30 +46,39 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: appBar,
-      body: SingleChildScrollView(
-        // alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                // shape: BoxShape.circle,
-                borderRadius: BorderRadius.circular(150),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage(displayPicturePath),
+                radius: 75,
               ),
-              width: 150,
-              height: 150,
-              child: displayPicture,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: slackDetailsSection(),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            GitHubButton(context),
-          ],
+              // Container(
+              //   decoration: BoxDecoration(
+              //     // shape: BoxShape.circle,
+              //     borderRadius: BorderRadius.circular(150),
+              //   ),
+              //   width: 150,
+              //   height: 150,
+              //   child: displayPicture,
+              // ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: slackDetailsSection(),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              EditButton(context),
+              GitHubButton(context),
+            ],
+          ),
         ),
       ),
     );
@@ -78,27 +86,28 @@ class HomePage extends StatelessWidget {
 
   Widget slackDetailsSection() {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          'Slack Display Name: ${slackDetail.fullName}',
+          'Slack Display Name: ${slackDetails.fullName}',
           style: TextStyle(
             fontSize: 18,
           ),
         ),
         Text(
-          'Slack User Name: ${slackDetail.userName}',
+          'Slack User Name: ${slackDetails.userName}',
           style: TextStyle(
             fontSize: 18,
           ),
         ),
         Text(
-          'Slack Display Name: ${slackDetail.gitHubHandle}',
+          'Slack Display Name: ${slackDetails.gitHubHandle}',
           style: TextStyle(
             fontSize: 18,
           ),
         ),
         Text(
-          'Slack Display Name: ${slackDetail.bio}',
+          'Slack Display Name: ${slackDetails.bio}',
           style: TextStyle(
             fontSize: 18,
           ),
@@ -107,7 +116,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget displayPicture = Image.asset('images/picture.jpg');
+  Image displayPicture = Image.asset(displayPicturePath);
 
   Widget GitHubButton(context) {
     return ElevatedButton(
@@ -121,20 +130,33 @@ class HomePage extends StatelessWidget {
       child: Text("Open GitHub!"),
     );
   }
+
+  Widget EditButton(context) {
+    return IconButton(
+      icon: Icon(Icons.edit),
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: ((context) => EditPage(
+                  slackdetails: slackDetails,
+                )),
+          ),
+        );
+      },
+    );
+  }
 }
 
 AppBar appBar = AppBar(
-  title: Center(
-    child: Text("Stage One"),
+  title: const Center(
+    child: Text("Profile"),
   ),
 );
 
-class SlackDetail {
-  String fullName, userName, gitHubHandle;
-  String? bio;
-  SlackDetail(
-      {required this.fullName,
-      required this.userName,
-      required this.gitHubHandle,
-      this.bio = ""});
-}
+const String displayPicturePath = 'images/picture.jpg';
+
+const defaultSlackDetails = SlackDetails(
+  fullName: "Olasupo Jamaldeen Abimbola",
+  userName: "Jamal",
+  gitHubHandle: "@Jamal",
+);
