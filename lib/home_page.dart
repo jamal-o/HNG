@@ -109,12 +109,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
         Text(
-          'Slack Display Name: ${slackDetails.displayName}',
-          style: TextStyle(
-            fontSize: 18,
-          ),
-        ),
-        Text(
           'GitHub Handle: ${slackDetails.gitHubHandle}',
           style: TextStyle(
             fontSize: 18,
@@ -173,8 +167,8 @@ AppBar appBar = AppBar(
 const String displayPicturePath = 'images/picture.jpg';
 
 const defaultSlackDetails = SlackDetails(
-    fullName: "Olasupo Jamaldeen Abimbola",
+    fullName: "Olasupo Jamaldeen",
     userName: "Jamal",
-    displayName: 'Jamal',
-    gitHubHandle: "@Jamal",
-    bio: 'hello I ');
+    gitHubHandle: "jamal-o",
+    bio:
+        'My name is Olasupo Jamaldeen. I am a mobile developer. I use Flutter to create amazing mobile apps.');
