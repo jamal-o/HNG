@@ -15,7 +15,8 @@ class _EditPageState extends State<EditPage> {
   late final TextEditingController fullNameController,
       displayNameController,
       userNameController,
-      bioController;
+      bioController,
+      gitHubHandleController;
   late SlackDetails slackdetails = widget.slackdetails;
   late SlackDetails updatedSlackDetails;
 
@@ -37,6 +38,10 @@ class _EditPageState extends State<EditPage> {
 
     bioController = TextEditingController();
     bioController.value = TextEditingValue(text: slackdetails.bio!);
+
+    gitHubHandleController = TextEditingController();
+    gitHubHandleController.value =
+        TextEditingValue(text: slackdetails.gitHubHandle);
   }
 
   TextStyle labelText = const TextStyle(fontWeight: FontWeight.bold);
@@ -59,90 +64,114 @@ class _EditPageState extends State<EditPage> {
         title: const Text('Edit Details'),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // fullNameWidget(),
-              Text("Full Name", style: labelText),
-              // SizedBox(
-              //   height: 3,
-              // ),
-              Expanded(
-                child: TextField(
-                  controller: fullNameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // fullNameWidget(),
+                    Text("Full Name", style: labelText),
+                    SizedBox(
+                      height: 3,
                     ),
-                  ),
+                    TextField(
+                      controller: fullNameController,
+                      decoration: InputDecoration(
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(10),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 6,
+                    ),
+
+                    // displayNameWidget(),
+                    Text("Display Name", style: labelText),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    TextField(
+                      controller: displayNameController,
+                      decoration: InputDecoration(
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(10),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 6,
+                    ),
+                    // userNameWidget(),
+                    Text("User Name", style: labelText),
+                    SizedBox(
+                      height: 3,
+                    ),
+
+                    TextField(
+                      controller: userNameController,
+                      decoration: InputDecoration(
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(10),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 6,
+                    ),
+
+                    Text("GitHubHandle", style: labelText),
+                    SizedBox(
+                      height: 3,
+                    ),
+
+                    TextField(
+                      controller: gitHubHandleController,
+                      decoration: InputDecoration(
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(10),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 6,
+                    ),
+                    // bioWidget(),
+                    Text("Bio", style: labelText),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    TextField(
+                      controller: bioController,
+                      decoration: InputDecoration(
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(10),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 6,
+                    ),
+
+                    updateButton(context),
+                  ],
                 ),
               ),
-
-              SizedBox(
-                height: 6,
-              ),
-
-              // displayNameWidget(),
-              Text("Display Name", style: labelText),
-              SizedBox(
-                height: 3,
-              ),
-              Expanded(
-                child: TextField(
-                  controller: displayNameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                height: 6,
-              ),
-              // userNameWidget(),
-              Text("User Name", style: labelText),
-              SizedBox(
-                height: 3,
-              ),
-              Expanded(
-                child: TextField(
-                  controller: userNameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                height: 6,
-              ),
-
-              // bioWidget(),
-              Text("Display Name", style: labelText),
-              SizedBox(
-                height: 3,
-              ),
-              Expanded(
-                child: TextField(
-                  controller: bioController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                height: 6,
-              ),
-
-              updateButton(context),
             ],
           ),
         ),
@@ -156,12 +185,17 @@ class _EditPageState extends State<EditPage> {
         onPressed: () {
           fullName = fullNameController.text;
           displayName = displayNameController.text;
+          bio = bioController.text;
+          userName = userNameController.text;
+          gitHubHandle = gitHubHandleController.text;
 
           // userNameController.dispose();
           // bioController.dispose();
 
           updatedSlackDetails = SlackDetails(
               fullName: fullName ?? '',
+              bio: bio ?? '',
+              displayName: displayName ?? '',
               userName: userName ?? '',
               gitHubHandle: gitHubHandle ?? '');
 

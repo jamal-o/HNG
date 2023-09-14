@@ -52,31 +52,39 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                backgroundImage: AssetImage(displayPicturePath),
-                radius: 75,
+              Card(
+                  child: Padding(
+                padding: const EdgeInsets.only(top: 32, bottom: 32),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage(displayPicturePath),
+                      radius: 75,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: slackDetailsSection(),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
+              )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  EditButton(context),
+                  SizedBox(width: 30),
+                  GitHubButton(context),
+                ],
               ),
-              // Container(
-              //   decoration: BoxDecoration(
-              //     // shape: BoxShape.circle,
-              //     borderRadius: BorderRadius.circular(150),
-              //   ),
-              //   width: 150,
-              //   height: 150,
-              //   child: displayPicture,
-              // ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: slackDetailsSection(),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              EditButton(context),
-              GitHubButton(context),
             ],
           ),
         ),
@@ -138,8 +146,11 @@ class HomePage extends StatelessWidget {
   }
 
   Widget EditButton(context) {
-    return IconButton(
-      icon: Icon(Icons.edit),
+    return ElevatedButton(
+      child: Icon(
+        Icons.edit,
+        //color: Colors.blue,
+      ),
       onPressed: () {
         Navigator.of(context).push(
           MaterialPageRoute(
