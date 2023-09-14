@@ -13,14 +13,13 @@ class EditPage extends StatefulWidget {
 
 class _EditPageState extends State<EditPage> {
   late final TextEditingController fullNameController,
-      displayNameController,
       userNameController,
       bioController,
       gitHubHandleController;
   late SlackDetails slackdetails = widget.slackdetails;
   late SlackDetails updatedSlackDetails;
 
-  String? fullName, displayName, userName, gitHubHandle, bio;
+  String? fullName, userName, gitHubHandle, bio;
   @override
   void initState() {
     // TODO: implement initState
@@ -28,10 +27,6 @@ class _EditPageState extends State<EditPage> {
     super.initState();
     fullNameController = TextEditingController();
     fullNameController.value = TextEditingValue(text: slackdetails.fullName);
-
-    displayNameController = TextEditingController();
-    displayNameController.value =
-        TextEditingValue(text: slackdetails.displayName);
 
     userNameController = TextEditingController();
     userNameController.value = TextEditingValue(text: slackdetails.userName);
@@ -50,7 +45,7 @@ class _EditPageState extends State<EditPage> {
   void dispose() {
     // TODO: implement dispose
     fullNameController.dispose();
-    displayNameController.dispose();
+
     userNameController.dispose();
     bioController.dispose();
 
@@ -93,24 +88,6 @@ class _EditPageState extends State<EditPage> {
                       height: 6,
                     ),
 
-                    // displayNameWidget(),
-                    Text("Display Name", style: labelText),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    TextField(
-                      controller: displayNameController,
-                      decoration: InputDecoration(
-                        isCollapsed: true,
-                        contentPadding: EdgeInsets.all(10),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 6,
-                    ),
                     // userNameWidget(),
                     Text("User Name", style: labelText),
                     SizedBox(
@@ -184,7 +161,7 @@ class _EditPageState extends State<EditPage> {
       child: ElevatedButton(
         onPressed: () {
           fullName = fullNameController.text;
-          displayName = displayNameController.text;
+
           bio = bioController.text;
           userName = userNameController.text;
           gitHubHandle = gitHubHandleController.text;
@@ -195,7 +172,6 @@ class _EditPageState extends State<EditPage> {
           updatedSlackDetails = SlackDetails(
               fullName: fullName ?? '',
               bio: bio ?? '',
-              displayName: displayName ?? '',
               userName: userName ?? '',
               gitHubHandle: gitHubHandle ?? '');
 
