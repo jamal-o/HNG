@@ -1,6 +1,5 @@
+import 'package:HNG_Demo/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:stage_one/home_page.dart';
-import 'package:stage_one/web-view.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,7 +1,7 @@
+import 'package:HNG_Demo/edit_page.dart';
+import 'package:HNG_Demo/slack_detail.dart';
+import 'package:HNG_Demo/web-view.dart';
 import 'package:flutter/material.dart';
-import 'package:stage_one/edit_page.dart';
-import 'package:stage_one/slack_detail.dart';
-import 'package:stage_one/web-view.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({this.slackDetails = defaultSlackDetails, super.key});
@@ -86,10 +86,10 @@ class HomePage extends StatelessWidget {
 
   Widget slackDetailsSection() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Slack Display Name: ${slackDetails.fullName}',
+          'Slack Full Name: ${slackDetails.fullName}',
           style: TextStyle(
             fontSize: 18,
           ),
@@ -101,13 +101,19 @@ class HomePage extends StatelessWidget {
           ),
         ),
         Text(
-          'Slack Display Name: ${slackDetails.gitHubHandle}',
+          'Slack Display Name: ${slackDetails.displayName}',
           style: TextStyle(
             fontSize: 18,
           ),
         ),
         Text(
-          'Slack Display Name: ${slackDetails.bio}',
+          'GitHub Handle: ${slackDetails.gitHubHandle}',
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
+        Text(
+          'Bio: ${slackDetails.bio}',
           style: TextStyle(
             fontSize: 18,
           ),
@@ -156,7 +162,8 @@ AppBar appBar = AppBar(
 const String displayPicturePath = 'images/picture.jpg';
 
 const defaultSlackDetails = SlackDetails(
-  fullName: "Olasupo Jamaldeen Abimbola",
-  userName: "Jamal",
-  gitHubHandle: "@Jamal",
-);
+    fullName: "Olasupo Jamaldeen Abimbola",
+    userName: "Jamal",
+    displayName: 'Jamal',
+    gitHubHandle: "@Jamal",
+    bio: 'hello I ');
